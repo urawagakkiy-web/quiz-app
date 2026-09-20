@@ -7,3 +7,11 @@
 
 # Office の一時ロックファイル
 ~$*
+
+# 依存パッケージ
+node_modules/
+
+# 環境変数（APIキーなどの秘密情報）
+.env
+.env.local
+.env.*.local
