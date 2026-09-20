@@ -1,0 +1,260 @@
+/* ===== テーマ色はここだけで決まる（個々のセレクタに色を直書きしない） ===== */
+:root {
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --text: #1c2333;
+  --muted: #6b7488;
+  --border: #dfe3ec;
+  --accent: #1a56db;          /* ボタン・進捗バーの青 */
+  --accent-dark: #123f9e;     /* ホバー・押下時の濃い青 */
+  --accent-border: #b9cdf7;   /* 選択肢ボタンの青い枠線 */
+  --accent-weak: #e8f0ff;     /* 選択肢ホバーの淡い青 */
+  --correct: #1b8a5a;
+  --correct-weak: #e4f5ec;
+  --wrong: #c8443c;
+  --wrong-weak: #fdeceb;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  line-height: 1.7;
+}
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ===== ヘッダー ===== */
+.header { text-align: center; margin-bottom: 16px; }
+
+.logo {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+}
+
+.sub {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ===== 進捗バー ===== */
+.progress {
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+/* ===== パネル ===== */
+.main {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+}
+
+.question {
+  margin: 0 0 20px;
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.lead {
+  margin: 0 0 20px;
+  color: var(--muted);
+}
+
+/* ===== 選択肢 ===== */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  background: var(--panel);
+  border: 1.5px solid var(--accent-border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.choice:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-weak);
+}
+
+.choice:active:not(:disabled) {
+  background: #d8e5ff;
+}
+
+.choice:disabled { cursor: default; }
+
+.choice .mark {
+  flex: none;
+  width: 24px;
+  color: var(--accent);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 記号（○×）と色の両方で正誤を示す */
+.choice.is-correct {
+  border-color: var(--correct);
+  background: var(--correct-weak);
+}
+
+.choice.is-correct .mark { color: var(--correct); }
+
+.choice.is-wrong {
+  border-color: var(--wrong);
+  background: var(--wrong-weak);
+}
+
+.choice.is-wrong .mark { color: var(--wrong); }
+
+/* ===== フィードバック ===== */
+.feedback {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.feedback.correct {
+  border-color: var(--correct);
+  background: var(--correct-weak);
+}
+
+.feedback.wrong {
+  border-color: var(--wrong);
+  background: var(--wrong-weak);
+}
+
+.feedback-title {
+  margin: 0 0 6px;
+  font-weight: bold;
+}
+
+.feedback.correct .feedback-title { color: var(--correct); }
+.feedback.wrong .feedback-title { color: var(--wrong); }
+
+.feedback-note {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ===== ボタン ===== */
+.btn {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn:hover { background: var(--accent-dark); }
+
+.btn:active { background: var(--accent-dark); }
+
+.btn.ghost {
+  background: var(--panel);
+  border: 1.5px solid var(--accent-border);
+  color: var(--accent);
+}
+
+.btn.ghost:hover {
+  background: var(--accent-weak);
+  border-color: var(--accent);
+}
+
+/* ===== 結果画面 ===== */
+.result { text-align: center; }
+
+.score {
+  margin: 8px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.score strong {
+  font-size: 2.6rem;
+  color: var(--accent);
+}
+
+.grade {
+  margin: 0 0 20px;
+  color: var(--muted);
+}
+
+.review {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  border-top: 1px solid var(--border);
+}
+
+.review li {
+  display: flex;
+  gap: 10px;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.review .mark {
+  flex: none;
+  width: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.review .mark.ok { color: var(--correct); }
+.review .mark.ng { color: var(--wrong); }
+
+/* ===== フッター ===== */
+.footer {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}

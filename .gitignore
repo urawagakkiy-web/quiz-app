@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# エディタ
+.vscode/
+.idea/
+
+# Office の一時ロックファイル
+~$*
